@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sarthak/mrc/sarthak_project/src/hello.cpp
+emc/io.h
+-
+emc/rate.h
+-
+iostream
+-
+algorithm
+-
+
