@@ -29,6 +29,7 @@ float min_dis = 1000;
 	std::cout<<"min:" <<min_dis<<std::endl;
 	if(min_dis< tresh){  io.sendBaseReference(0, 0, 0);}
 	else{ 
+	std::cout<<"angle increment:"<<std::endl;	
 	std::cout<<"run:"<<std::endl;
 	 io.sendBaseReference(0.5, 0, 0);}
 
