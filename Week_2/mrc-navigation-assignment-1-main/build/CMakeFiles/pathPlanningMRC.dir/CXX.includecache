@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Planner/planning.h
+emc/io.h
+-
+iostream
+-
+stdio.h
+-
+cmath
+-
+list
+-
+algorithm
+-
+
+/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/src/Planner/planning.cpp
+./Planner/planning.h
+/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/src/Planner/Planner/planning.h
+
