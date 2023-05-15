@@ -1,0 +1,5 @@
+add_test( ToolTest.wrap2PiTest /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/bin/tooltest [==[--gtest_filter=ToolTest.wrap2PiTest]==] --gtest_also_run_disabled_tests)
+set_tests_properties( ToolTest.wrap2PiTest PROPERTIES WORKING_DIRECTORY /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build)
+add_test( ToolTest.constructNoFail /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/bin/tooltest [==[--gtest_filter=ToolTest.constructNoFail]==] --gtest_also_run_disabled_tests)
+set_tests_properties( ToolTest.constructNoFail PROPERTIES WORKING_DIRECTORY /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build)
+set( tooltest_TESTS ToolTest.wrap2PiTest ToolTest.constructNoFail)
