@@ -7,6 +7,6 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/devel:$CMAKE_PREFIX_PATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/devel:$CMAKE_PREFIX_PATH"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global:$ROS_PACKAGE_PATH"

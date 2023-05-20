@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/gtest/googlemock/cmake_install.cmake")
+  include("/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/gtest/googlemock/cmake_install.cmake")
 
 endif()
 

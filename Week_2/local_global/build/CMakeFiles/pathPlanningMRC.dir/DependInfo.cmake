@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/include/3rdparty/rangelibc/vendor/lodepng/lodepng.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles/pathPlanningMRC.dir/include/3rdparty/rangelibc/vendor/lodepng/lodepng.cpp.o"
-  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/src/Objects/Robot.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles/pathPlanningMRC.dir/src/Objects/Robot.cpp.o"
-  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/src/Planner/planning.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles/pathPlanningMRC.dir/src/Planner/planning.cpp.o"
-  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/src/tools.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles/pathPlanningMRC.dir/src/tools.cpp.o"
+  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/include/3rdparty/rangelibc/vendor/lodepng/lodepng.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles/pathPlanningMRC.dir/include/3rdparty/rangelibc/vendor/lodepng/lodepng.cpp.o"
+  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/src/Objects/Robot.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles/pathPlanningMRC.dir/src/Objects/Robot.cpp.o"
+  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/src/Planner/planning.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles/pathPlanningMRC.dir/src/Planner/planning.cpp.o"
+  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/src/tools.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles/pathPlanningMRC.dir/src/tools.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -15,7 +15,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
-  "ROS_PACKAGE_NAME=\"mrc-pathplanning\""
+  "ROS_PACKAGE_NAME=\"local_global\""
   "USE_CUDA=0"
   "pathPlanningMRC_EXPORTS"
   )

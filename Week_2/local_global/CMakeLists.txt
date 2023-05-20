@@ -1,6 +1,6 @@
 # CMakeLists.txt
 cmake_minimum_required(VERSION 3.10)
-project("mrc-pathplanning")
+project("local_global")
 
 set(DCMAKE_BUILD_TYPE,"Release")
 

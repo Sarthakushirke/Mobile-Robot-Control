@@ -8,7 +8,7 @@ nlohmann::json load_config_file(int argc, char *argv[])
     if (argc == 1) // No additional arguments provided. Use the default
     {
         std::cout << "Using default config-file: ";
-        filename = "../config/params_maze.json";
+        filename = "../config/params_autonomous_maze";
         std::cout << filename << std::endl;
     }
     else if (argc > 1) // Use the provided config-file

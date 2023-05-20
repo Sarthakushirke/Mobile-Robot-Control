@@ -406,15 +406,15 @@ fstream
 chrono
 -
 
-/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/tests/test_assignment1.cpp
+/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/tests/test_assignment1.cpp
 gtest/gtest.h
 -
 cmath
 -
 ./Planner/planning.h
-/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/tests/Planner/planning.h
+/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/tests/Planner/planning.h
 ./tools.h
-/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/tests/tools.h
+/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/tests/tools.h
 
 /opt/ros/noetic/include/ros/advertise_options.h
 ros/forwards.h

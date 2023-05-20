@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sarthak/mrc/Mobile-Robot-Control/Week_3/Localization_assig1/src/hello.cpp
+emc/io.h
+-
+emc/rate.h
+-
+iostream
+-
+algorithm
+-
+

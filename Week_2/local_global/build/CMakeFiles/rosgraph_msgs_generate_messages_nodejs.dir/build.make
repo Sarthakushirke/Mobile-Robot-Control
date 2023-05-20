@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main
+CMAKE_SOURCE_DIR = /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build
+CMAKE_BINARY_DIR = /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build
 
 # Utility rule file for rosgraph_msgs_generate_messages_nodejs.
 
@@ -67,6 +67,6 @@ CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
 .PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
 
 CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend:
-	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
 

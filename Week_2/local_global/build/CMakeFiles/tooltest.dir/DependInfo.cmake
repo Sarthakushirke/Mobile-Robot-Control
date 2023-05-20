@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/tests/tooltest.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles/tooltest.dir/tests/tooltest.cpp.o"
+  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/tests/tooltest.cpp" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles/tooltest.dir/tests/tooltest.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -12,7 +12,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
-  "ROS_PACKAGE_NAME=\"mrc-pathplanning\""
+  "ROS_PACKAGE_NAME=\"local_global\""
   "USE_CUDA=0"
   )
 
@@ -26,7 +26,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles/pathPlanningMRC.dir/DependInfo.cmake"
+  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles/pathPlanningMRC.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

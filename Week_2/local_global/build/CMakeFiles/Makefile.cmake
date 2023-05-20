@@ -138,7 +138,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CTestConfiguration.ini"
-  "catkin_generated/stamps/mrc-pathplanning/package.xml.stamp"
+  "catkin_generated/stamps/local_global/package.xml.stamp"
   "atomic_configure/_setup_util.py"
   "atomic_configure/env.sh"
   "atomic_configure/setup.bash"
@@ -149,7 +149,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "atomic_configure/local_setup.zsh"
   "atomic_configure/.rosinstall"
   "catkin_generated/installspace/_setup_util.py"
-  "catkin_generated/stamps/mrc-pathplanning/_setup_util.py.stamp"
+  "catkin_generated/stamps/local_global/_setup_util.py.stamp"
   "catkin_generated/installspace/env.sh"
   "catkin_generated/installspace/setup.bash"
   "catkin_generated/installspace/local_setup.bash"
@@ -160,7 +160,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "catkin_generated/installspace/.rosinstall"
   "catkin_generated/generate_cached_setup.py"
   "catkin_generated/env_cached.sh"
-  "catkin_generated/stamps/mrc-pathplanning/interrogate_setup_dot_py.py.stamp"
+  "catkin_generated/stamps/local_global/interrogate_setup_dot_py.py.stamp"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "gtest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "gtest/googlemock/CMakeFiles/CMakeDirectoryInformation.cmake"

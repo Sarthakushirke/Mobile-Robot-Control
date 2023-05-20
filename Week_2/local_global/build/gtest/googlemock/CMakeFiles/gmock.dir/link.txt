@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -march=native -ffast-math -fno-math-errno  -shared -Wl,-soname,libgmock.so -o ../lib/libgmock.so CMakeFiles/gmock.dir/src/gmock-all.cc.o  -Wl,-rpath,/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/gtest/lib ../lib/libgtest.so -lpthread 
+/usr/bin/c++ -fPIC -march=native -ffast-math -fno-math-errno  -shared -Wl,-soname,libgmock.so -o ../lib/libgmock.so CMakeFiles/gmock.dir/src/gmock-all.cc.o  -Wl,-rpath,/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/gtest/lib ../lib/libgtest.so -lpthread 

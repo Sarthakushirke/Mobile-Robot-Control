@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/usr/src/googletest/googletest/src/gtest_main.cc" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/gtest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+  "/usr/src/googletest/googletest/src/gtest_main.cc" "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/gtest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -23,7 +23,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/gtest/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/gtest/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

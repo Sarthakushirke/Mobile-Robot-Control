@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main
+CMAKE_SOURCE_DIR = /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build
+CMAKE_BINARY_DIR = /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,14 +137,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/gtest/CMakeFiles/progress.marks
-	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build/CMakeFiles 0
+	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/gtest/CMakeFiles/progress.marks
+	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
+	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,17 +154,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
+	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
+	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -191,6 +191,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -march=native -ffast-math -fno-math-errno   -std=gnu++14
 
-CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"mrc-pathplanning\" -DUSE_CUDA=0
+CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"local_global\" -DUSE_CUDA=0
 
-CXX_INCLUDES = -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/include -isystem /home/sarthak/mrc/Mobile-Robot-Control/Week_2/mrc-navigation-assignment-1-main/include/3rdparty 
+CXX_INCLUDES = -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/include -isystem /home/sarthak/mrc/Mobile-Robot-Control/Week_2/local_global/include/3rdparty 
 

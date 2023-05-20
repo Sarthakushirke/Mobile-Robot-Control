@@ -1,4 +1,6 @@
 #include "./Planner/planning.h"
+emc::IO io;
+emc::LaserData scan;
 
 double calculate_distance(Node node_A, Node node_B){
     return sqrt((node_A.x-node_B.x)*(node_A.x-node_B.x) + (node_A.y-node_B.y)*(node_A.y-node_B.y));
@@ -56,58 +58,260 @@ void Planner::planPath(){
              *                     - update its parent node (should now become equal to the current node) */
             // Put your code here
             //Explore the nodes connected to the new current node if they were not closed yet
+            int i = 0; // Looping through each node of the parent node
+            double angle_increment = scan.angle_increment;
+            int middle_idx = scan.ranges.size() / 2;
+            //90 degrees 
+            int idx_90 = 90/angle_increment;
+            int idx_45 = idx_90/2;
+            int range_90 = middle_idx - idx_90;
+            int range_45 = middle_idx - idx_45;
+            int range_90_plus = middle_idx + idx_90;
+            int range_45_plus = middle_idx + idx_45; 
+
             for(int neighbours : _connections[current_nodeID])
             {   
+                i = i + 1; 
                     bool not_found = (std::find(closed_nodes.begin(), closed_nodes.end(), neighbours) == closed_nodes.end());
                     bool not_found_open = (std::find(open_nodes.begin(), open_nodes.end(), neighbours) == open_nodes.end());
                     //Add them to the list of open nodes when they were not open yet
                     if(not_found && not_found_open) 
                     {
-                        open_nodes.push_back(neighbours);
-                        _nodelist[neighbours].g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
-                        _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h;
-                        _nodelist[neighbours].parent_node_ID = current_nodeID;
+                        if(io.readLaserData(scan))
+                        {
+                                                     
+                             if (i == 1)
+                             {
+                               float cur_range = scan.ranges[range_90];   
+                                if(cur_range < 0.8)
+                               {
+                                _nodelist[neighbours].g = INFINITY; // cost-to-come from the start to this node
+                                _nodelist[neighbours].h = calculate_distance(_nodelist[neighbours], node_goal); // heuristic cost-to-go from this node to the goal
+                                _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h; // cost-to-come + cost-to-go
+                                _nodelist[neighbours].parent_node_ID = current_nodeID;  // ID of the node from which node you arrived at this node with the lowest cost-to-come
+                               }
+                               else
+                               {
+                                    open_nodes.push_back(neighbours);
+                                    _nodelist[neighbours].g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h;
+                                    _nodelist[neighbours].parent_node_ID = current_nodeID;
+                               } 
+                               
+                             }
+                             if (i == 2)
+                            {
+                                float cur_range = scan.ranges[range_45];     
+                                if(cur_range < 0.8)
+                               {
+                                _nodelist[neighbours].g = INFINITY; // cost-to-come from the start to this node
+                                _nodelist[neighbours].h = calculate_distance(_nodelist[neighbours], node_goal); // heuristic cost-to-go from this node to the goal
+                                _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h; // cost-to-come + cost-to-go
+                                _nodelist[neighbours].parent_node_ID = current_nodeID;  // ID of the node from which node you arrived at this node with the lowest cost-to-come
+                               }
+                               else
+                               {
+                                    open_nodes.push_back(neighbours);
+                                    _nodelist[neighbours].g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h;
+                                    _nodelist[neighbours].parent_node_ID = current_nodeID;
+                               }
+                               
+                             }
+                            if (i == 3)
+                            {
+                                float cur_range = scan.ranges[middle_idx];  
+                                if(cur_range < 0.8)
+                               {
+                                _nodelist[neighbours].g = INFINITY; // cost-to-come from the start to this node
+                                _nodelist[neighbours].h = calculate_distance(_nodelist[neighbours], node_goal); // heuristic cost-to-go from this node to the goal
+                                _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h; // cost-to-come + cost-to-go
+                                _nodelist[neighbours].parent_node_ID = current_nodeID;  // ID of the node from which node you arrived at this node with the lowest cost-to-come
+                               }
+                               else
+                               {
+                                    open_nodes.push_back(neighbours);
+                                    _nodelist[neighbours].g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h;
+                                    _nodelist[neighbours].parent_node_ID = current_nodeID;
+                               }
+                               
+                             }
+
+                            if (i == 4)
+                            {
+                                float cur_range = scan.ranges[range_45_plus];  
+                                if(cur_range < 0.8)
+                               {
+                                _nodelist[neighbours].g = INFINITY; // cost-to-come from the start to this node
+                                _nodelist[neighbours].h = calculate_distance(_nodelist[neighbours], node_goal); // heuristic cost-to-go from this node to the goal
+                                _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h; // cost-to-come + cost-to-go
+                                _nodelist[neighbours].parent_node_ID = current_nodeID;  // ID of the node from which node you arrived at this node with the lowest cost-to-come
+                               }
+                               else
+                               {
+                                    open_nodes.push_back(neighbours);
+                                    _nodelist[neighbours].g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h;
+                                    _nodelist[neighbours].parent_node_ID = current_nodeID;
+                               } 
+                               
+                             }
+
+                            if (i == 5)
+                            {
+                                float cur_range = scan.ranges[range_90_plus]; 
+                                if(cur_range < 0.8)
+                               {
+                                _nodelist[neighbours].g = INFINITY; // cost-to-come from the start to this node
+                                _nodelist[neighbours].h = calculate_distance(_nodelist[neighbours], node_goal); // heuristic cost-to-go from this node to the goal
+                                _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h; // cost-to-come + cost-to-go
+                                _nodelist[neighbours].parent_node_ID = current_nodeID;  // ID of the node from which node you arrived at this node with the lowest cost-to-come
+                               }
+                               else
+                               {
+                                    open_nodes.push_back(neighbours);
+                                    _nodelist[neighbours].g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    _nodelist[neighbours].f = _nodelist[neighbours].g + _nodelist[neighbours].h;
+                                    _nodelist[neighbours].parent_node_ID = current_nodeID;
+                               } 
+                               
+                             }
+
+                    }
+
                     }   
                     else if (not_found && !not_found_open) 
                     {
-                        int new_g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
-                        int new_f = new_g + _nodelist[neighbours].h;
-                        int new_parent = current_nodeID;
-                        if (_nodelist[neighbours].f > new_f)
-                        { 
-                            //update g,f, parent
-                            _nodelist[neighbours].f = new_f ; 
-                            _nodelist[neighbours].g = new_g ;
-                            _nodelist[neighbours].parent_node_ID = new_parent;
+                        if(io.readLaserData(scan))
+                        {
+                                                     
+                             if (i == 1)
+                             {
+                               float cur_range = scan.ranges[range_90];   
+                                if(cur_range < 0.8)
+                               {
+                                    int new_g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    int new_f = new_g + _nodelist[neighbours].h;
+                                    int new_parent = current_nodeID;
+                                    if (_nodelist[neighbours].f > new_f)
+                                    { 
+                                        //update g,f, parent
+                                        _nodelist[neighbours].f = new_f ; 
+                                        _nodelist[neighbours].g = new_g ;
+                                        _nodelist[neighbours].parent_node_ID = new_parent;
 
-                        }  
+                                    }
+                               } 
+
+                             }
+                             if (i == 2)
+                            {
+                                float cur_range = scan.ranges[range_45];     
+                                if(cur_range < 0.8)
+                               {
+                                    int new_g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    int new_f = new_g + _nodelist[neighbours].h;
+                                    int new_parent = current_nodeID;
+                                    if (_nodelist[neighbours].f > new_f)
+                                    { 
+                                        //update g,f, parent
+                                        _nodelist[neighbours].f = new_f ; 
+                                        _nodelist[neighbours].g = new_g ;
+                                        _nodelist[neighbours].parent_node_ID = new_parent;
+
+                                    }
+                               }                               
+                             }
+                            if (i == 3)
+                            {
+                                float cur_range = scan.ranges[middle_idx];  
+                                if(cur_range < 0.8)
+                               {
+                                    int new_g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    int new_f = new_g + _nodelist[neighbours].h;
+                                    int new_parent = current_nodeID;
+                                    if (_nodelist[neighbours].f > new_f)
+                                    { 
+                                        //update g,f, parent
+                                        _nodelist[neighbours].f = new_f ; 
+                                        _nodelist[neighbours].g = new_g ;
+                                        _nodelist[neighbours].parent_node_ID = new_parent;
+
+                                    }
+                               }                               
+                             }
+
+                            if (i == 4)
+                            {
+                                float cur_range = scan.ranges[range_45_plus];  
+                                if(cur_range < 0.8)
+                               {
+                                  int new_g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    int new_f = new_g + _nodelist[neighbours].h;
+                                    int new_parent = current_nodeID;
+                                    if (_nodelist[neighbours].f > new_f)
+                                    { 
+                                        //update g,f, parent
+                                        _nodelist[neighbours].f = new_f ; 
+                                        _nodelist[neighbours].g = new_g ;
+                                        _nodelist[neighbours].parent_node_ID = new_parent;
+
+                                    }
+                                }
+                               
+                             }
+
+                            if (i == 5)
+                            {
+                                float cur_range = scan.ranges[range_90_plus]; 
+                                if(cur_range < 0.8)
+                               {
+                                    int new_g = calculate_distance(_nodelist[neighbours],_nodelist[current_nodeID]) + _nodelist[current_nodeID].g;
+                                    int new_f = new_g + _nodelist[neighbours].h;
+                                    int new_parent = current_nodeID;
+                                    if (_nodelist[neighbours].f > new_f)
+                                    { 
+                                        //update g,f, parent
+                                        _nodelist[neighbours].f = new_f ; 
+                                        _nodelist[neighbours].g = new_g ;
+                                        _nodelist[neighbours].parent_node_ID = new_parent;
+
+                                    }
+                               }    
+                             }
+
                     }
+                  
+                }
             }
             /*-- End Exercise 2/3 --*/
 
             // remove the current node from the open list and add it to the closed list
             open_nodes.remove(current_nodeID);
             closed_nodes.push_back(current_nodeID);
-        }
-    }
-    
-    /* 2: Trace back the optimal path (if the goal could be reached) */
-    if (goal_reached){
-        std::list<int> path_node_IDs = {};
+
+            /* 2: Trace back the optimal path (if the goal could be reached) */
+
+            std::list<int> path_node_IDs = {};
         
-        /*-- Exercise 3/3: Put the node IDs of nodes in the optimal path (from entrance to finish) in the list path_node_IDs --*/
-        // Put your code here
-        int nodeID = _finish_nodeID;
-        while (nodeID != _entrance_nodeID) {
+            /*-- Exercise 3/3: Put the node IDs of nodes in the optimal path (from entrance to finish) in the list path_node_IDs --*/
+            // Put your code here
+            int nodeID = _finish_nodeID;
+            int current_bot_pos = current_nodeID;
+            while (nodeID != current_bot_pos) {
             path_node_IDs.push_front(nodeID);
             nodeID = _nodelist[nodeID].parent_node_ID;
-        }
+             }
         path_node_IDs.push_front(_entrance_nodeID);
         /*-- End Exercise 3/3 --*/
 
         setPathNodeIDs(path_node_IDs);
         setPathFound(true);
+        }
     }
+    
+
 }
 
 void Planner::setNodeResolution(const double &node_resolution){
