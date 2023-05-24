@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/sarthak/mrc/Mobile-Robot-Control/Week_1/src/hello.cpp
+/home/sarthak/mrc/Mobile-Robot-Control/Week_2/try/src/assig2.cpp
 emc/io.h
 -
 emc/rate.h
@@ -15,6 +15,6 @@ iostream
 -
 algorithm
 -
-math.h
+cmath
 -
 

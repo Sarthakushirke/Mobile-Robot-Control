@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/hello.dir/src/hello_work.cpp.o  -o ../bin/hello  -lemc-framework 

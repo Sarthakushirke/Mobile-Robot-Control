@@ -2,6 +2,7 @@
 #include <emc/rate.h>
 #include <iostream> // Add this line under the other includes
 #include <algorithm>
+#include <math.h>
 int main()
 {
  // Create IO object, which will initialize the io layer
@@ -15,21 +16,22 @@ int main()
  emc::LaserData scan;
  // Send a reference to the base controller (vx, vy, vtheta)
 
-float tresh=0.2;
+float tresh=0.7;
 float min_dis = 1000; 
  if (io.readLaserData(scan))
 {
-	 // Loop through all the laser range measurements
-	for(int i =0; i<scan.ranges.size(); ++i)
+	// Loop through all the laser range measurements
+	for(int i =0; i < scan.ranges.size(); ++i)
 	{
 		float cur_range = scan.ranges[i];
-
-		if(cur_range< min_dis) min_dis = cur_range;
+		if(cur_range < min_dis) min_dis = cur_range;
 	}
 	std::cout<<"min:" <<min_dis<<std::endl;
 	if(min_dis< tresh){  io.sendBaseReference(0, 0, 0);}
 	else{ 
-	std::cout<<"angle increment:"<<std::endl;	
+	std::cout<<"angle increment:"<< (180/M_PI)*scan.angle_increment <<std::endl;	
+	std::cout<<"angle pi/4:"<< M_PI_4 <<std::endl;
+	std::cout<<"angle pi/4:"<< scan.ranges.size() <<std::endl;
 	std::cout<<"run:"<<std::endl;
 	 io.sendBaseReference(0.5, 0, 0);}
 
