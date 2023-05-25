@@ -50,6 +50,7 @@ int main()
     emc::IO io;
     // Create Rate object, which will help keeping the loop at a fixed frequency
     emc::Rate r(10);
+ 
     
     // Variables to store previous odometry data
     //float obstacle_Area = 0.0;
@@ -69,15 +70,15 @@ int main()
     float middle_robot_angle = 0.0;
 
     //Tolerance 
-    int tolerance = 0.1;
+    int tolerance = 0.2;
     //rotation speed 
-    const double rotationSpeed = 0.5;  // Adjust the rotation speed as needed
+    const double rotationSpeed = 0.1;  // Adjust the rotation speed as needed
 
     int id_reached = 0;
 
 
     std::vector<std::pair<float, std::pair<int, int>>> areas_with_indices;  // Container to store the pairs of first_i, last_i values and open_area
-
+    emc::OdometryData startOdom;
     // Loop while we are properly connected
     while (io.ok())
     {
@@ -180,14 +181,18 @@ int main()
                 float error = middle_openArea_angle- middle_robot_angle;
                 std::cout << "error: " << error << std::endl;
 
-                while (std::abs(middle_robot_angle - middle_openArea_angle) > tolerance)
+                double initialodomangle = 0.0;  // Variable to store the initial odometry angle
+                bool clockwise_rotate = true;
+                bool anticlockwise_rotate = true;
+
+                double currentodomangle = 0;
+            
+                while (std::abs(error) > tolerance)
                 {
                     //I entered the while loop 
                     if (io.readOdometryData(odom))
                     {
-                        double currentodomangle = odom.a;
-                        std::cout << "current odom angle " << currentodomangle << std::endl;
-
+                        std::cout << "error: " << error << std::endl;
                         // Rotate the robot based on the error (proportional control)
                         float rotation = rotationSpeed * error;
                         std::cout << "rotation: " << rotation << std::endl;
@@ -195,33 +200,33 @@ int main()
                         // Send the rotation command to the robot (e.g., using io.sendBaseReference())
                         if(error > 0)
                         {
-                            std::cout << "Robot rotated" << std::endl;
+                            std::cout << "Robot rotated clockwise" << std::endl;
                             io.sendBaseReference(0,0,rotation);
                             double rotatedodomangle = odom.a;
                             std::cout << "rotatedodomangle" << rotatedodomangle << std::endl;
-                            double actual_angle = currentodomangle - rotatedodomangle;
+                            double actual_angle = std::abs(currentodomangle - rotatedodomangle);
                             std::cout << "actual_angle" << actual_angle << std::endl;
                             error = error - actual_angle;
-                            
-                            //int n_id = actual_angle/angle_increment;
-                            //std::cout << "n_id " << n_id << std::endl;
-                            //int id_reached = middle_robot + n_id;
+                            currentodomangle = rotatedodomangle;
                         }
                         else
                         {
+                            std::cout << "Robot rotated anti-clockwise" << std::endl;
                             io.sendBaseReference(0,0,-rotation);
                             double rotatedodomangle = odom.a;
                             double actual_angle = std::abs(currentodomangle - rotatedodomangle);
                             error = error + actual_angle;
-                            //int actual_angle = rotatedodomangle - currentodomangle;
-                            //float n_id = actual_angle/angle_increment;
-                            //int id_reached = middle_robot - n_id;
+                            currentodomangle = rotatedodomangle;
                         }
-                    }
+                        
+                    }  
+                    
                 }
+
                 //move untill the maxopen area is not having any colisions 
                 for (int i = maxFirst_i; i <= maxLast_i; i++)
                 {
+                    std::cout << "Move forward" << std::endl;
                     const float curr_range = scan.ranges[i]; 
                     if(curr_range > minimum_threshold)
                     {
