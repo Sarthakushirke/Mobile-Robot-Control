@@ -9,7 +9,6 @@ inline float getAngle(float increment, int i)
         return increment * i;
 }
 
-
 // float getDistance(float angleIncrement, int beginIdx, int endIdx, const std::vector<float>& ranges) {
 //     const float obstacleAngleBegin = getAngle(angleIncrement, beginIdx);
 //     const float obstacleAngleEnd = getAngle(angleIncrement, endIdx);
@@ -34,15 +33,7 @@ inline float getAngle(float increment, int i)
 //         (distanceBC * distanceBC + ranges[beginIdx] * ranges[beginIdx] - ranges[endIdx] * ranges[endIdx]) /
 //         (2 * ranges[beginIdx] * distanceBC)
 //     );
-//     return static_cast<float>(beta);
-// }
-
-// float getArea(float angleIncrement,int beginIdx, int endIdx, const std::vector<float>& ranges)
-// {
-//     float distanceBC = getDistance(angleIncrement,beginIdx, endIdx, ranges);
-//     float angle_beta = getBeta(angleIncrement,beginIdx,endIdx,ranges);
-//     float cal_area =  0.5*distanceBC*ranges[beginIdx]* std::sin(angle_beta);
-//     return static_cast<float>(cal_area);
+//     return static_cast<float>(beta); 
 // }
 
 float getArea(float angleIncrement,int beginIdx, int endIdx, const std::vector<float>& ranges)
@@ -54,6 +45,14 @@ float getArea(float angleIncrement,int beginIdx, int endIdx, const std::vector<f
     return static_cast<float>(cal_area);
 }
 
+// float getArea(float angleIncrement,int beginIdx, int endIdx, const std::vector<float>& ranges)
+// {
+//     float distanceBC = getDistance(angleIncrement,beginIdx, endIdx, ranges);
+//     float angle_beta = getBeta(angleIncrement,beginIdx,endIdx,ranges);
+//     float cal_area =  0.5*distanceBC*ranges[beginIdx]* std::sin(angle_beta);
+//     return static_cast<float>(cal_area);
+// }
+
 int main()
 {
     // Create IO object, which will initialize the io layer
@@ -64,40 +63,44 @@ int main()
     
     // Variables to store previous odometry data
     //float obstacle_Area = 0.0;
-    float open_area = 0.0;
+    float openArea = 0.0;
 
     // Initialize the maximum open area
     float maxOpenArea = 0.0;
 
     // middle of the max open area
-    int middle_openArea = 0.0;
+    float middle_openArea = 0.0;
 
     //Angle of the middle_openArea id 
     float middle_openArea_angle = 0.0;
+
 
     // middle of the robot angle
     float middle_robot_angle = 0.0;
 
     //Tolerance 
-    float tolerance = 1;
+    float tolerance = 0.1;
     //rotation speed 
-    float rotationSpeed = 0.1;  // Adjust the rotation speed as needed
+    const double rotationSpeed = 0.2;  // Adjust the rotation speed as needed
 
-
-    const float minimum_threshold = 0.7;   // Minimum threshold for obstacle detection
-    const float max_threshold = 0.0;     // Maximum threshold of the laser beam
+    int id_reached = 0;
+    const float minimum_threshold = 0.5;   // Minimum threshold for obstacle detection
+    
 
     std::vector<std::pair<float, std::pair<int, int>>> areas_with_indices;  // Container to store the pairs of first_i, last_i values and open_area
-
+    emc::OdometryData startOdom;
     // Loop while we are properly connected
     while (io.ok())
     {
+        
+        
         // Create objects to hold the laser and odometry data
         emc::LaserData scan;  
         emc::OdometryData odom;   
 
         if (io.readLaserData(scan))
         {
+            openArea = 0.0;
             maxOpenArea = 0.0;
             const double forward_angle = M_PI_4;		   // 45 degrees
 			const double angle_increment = scan.angle_increment;
@@ -116,28 +119,28 @@ int main()
             int middle_robot = 0.5*(start_index + end_index);
             //std::cout << "middle_robot: " << middle_robot << std::endl;
 
+
             for (int i = start_index; i <= end_index; i++)
 			{
-
-                // if(scan.ranges[i] > 4)
-                // {
-                //     scan.ranges[i] = 4;
-                // }
+                if(scan.ranges[i] > 3)
+                {
+                    scan.ranges[i] = 3;
+                }
                 const float cur_range = scan.ranges[i]; 
 
                 //std::cout << "curr_range: " << cur_range << std::endl;
                 if(cur_range < minimum_threshold)
                 {   
                     io.sendBaseReference(0,0,0);
-
                     // Reset first_i and last_i if an i enters the if statement
                     first_i = -1;
                     last_i = -1;
+                    openArea = 0.0;
                 }
                 else
                 {
                     io.sendBaseReference(0,0,0);
-                    open_area = open_area + getArea(angle_increment,i , i+1 ,scan.ranges);
+                    openArea = openArea + getArea(angle_increment,i , i+1 ,scan.ranges);
                     //std::cout << " Open Area: " << open_area << std::endl;
                     // Update first_i and last_i when an i enters the else statement for the first time
                     if (first_i == -1)
@@ -150,7 +153,7 @@ int main()
                     {
                         last_i = i;
                         // Store the pair of first_i and last_i values
-                        areas_with_indices.push_back(std::make_pair(open_area, std::make_pair(first_i, last_i)));
+                        areas_with_indices.push_back(std::make_pair(openArea, std::make_pair(first_i, last_i)));
                         //std::cout << " Last_i: " << last_i << std::endl; 
                     }
                     //std::cout << " FIrst_i: " << first_i << std::endl;
@@ -163,7 +166,7 @@ int main()
             for (const auto& areaWithIndices : areas_with_indices) 
             {
                 // Access the open area and its corresponding first_i and last_i
-                float openArea = areaWithIndices.first;
+                openArea = areaWithIndices.first;
                 //std::cout << "open_area: " << openArea << std::endl;
                 //std::cout << "maxopenarea: " << maxOpenArea << std::endl;
                 int first_i = areaWithIndices.second.first;
@@ -184,7 +187,7 @@ int main()
             }
             
             // Check if a maximum open area was found
-            if (maxOpenArea > 0.0) 
+            if (maxOpenArea > 0.0001) 
             {
                 // Print the maximum open area and its corresponding indices
                 //std::cout << "Maximum Open Area: " << maxOpenArea << std::endl;
@@ -202,16 +205,18 @@ int main()
                 float error = middle_openArea_angle- middle_robot_angle;
                 //std::cout << "error: " << error << std::endl;
 
-                double currentodomangle = 0;
+                emc::OdometryData prevOdom;
+
+                double currentodomangle = prevOdom.a;
             
-                while (std::abs(error) > tolerance)
+                if (std::abs(error) > tolerance)
                 {
-                    //I entered the while loop 
+                    //I entered the rotataion part 
                     if (io.readOdometryData(odom))
                     {
                         //std::cout << "error: " << std::abs(error) << std::endl;
                         // Rotate the robot based on the error (proportional control)
-                        float rotation = rotationSpeed * error;
+                        float rotation = rotationSpeed * std::abs(error); //error;
                         //std::cout << "rotation: " << rotation << std::endl;
 
                         // Send the rotation command to the robot (e.g., using io.sendBaseReference())
@@ -238,19 +243,22 @@ int main()
                         
                     }  
                     
-                }
-                //std::cout << "maxFirst" << maxFirst_i << std::endl;
-                //std::cout << "maxLast" << maxLast_i << std::endl;
-                //move untill the maxopen area is not having any colisions 
-                for (int i = maxFirst_i; i <= maxLast_i; i++)
-                {
-                    //std::cout << "Move forward" << std::endl;
-                    const float curr_range = scan.ranges[i]; 
-                    if(curr_range > minimum_threshold)
-                    {
-                        io.sendBaseReference(0.05,0,0);
-                    }
-                
+                } else { // move forward
+                    
+                    //std::cout << "maxFirst" << maxFirst_i << std::endl;
+                    //std::cout << "maxLast" << maxLast_i << std::endl;
+                    //move untill the maxopen area is not having any colisions 
+                    // for (int i = maxFirst_i; i <= maxLast_i; i++)
+                    // {
+                    //     //std::cout << "Move forward" << std::endl;
+                    //     const float curr_range = scan.ranges[i]; 
+                    //     if(curr_range > minimum_threshold)
+                    //     {
+                    //         io.sendBaseReference(0.1,0,0);
+                    //     }
+                    
+                    // }
+                    io.sendBaseReference(0.1,0,0);
                 }
 
             }
@@ -261,6 +269,7 @@ int main()
             }
 
             areas_with_indices.clear();
+
         }
         else
         {
@@ -274,4 +283,3 @@ int main()
 
     return 0;
 }
-

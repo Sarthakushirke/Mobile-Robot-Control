@@ -3,5 +3,5 @@
   "show_full_map":false,
   "provide_internal_pose":true,
   "objects":[],
-  "initial_pose":[-5,0,0]
+  "initial_pose":[-5,1,0]
 }

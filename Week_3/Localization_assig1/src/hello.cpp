@@ -39,11 +39,16 @@ int main()
                 double deltaY = odom.y - prevOdom.y;
                 double deltaA = odom.a - prevOdom.a;
 
-                std::cout << "Delta x: " << deltaX << "\n"
-                          << "Delta y: " << deltaY << "\n"
-                          << "Delta a: " << deltaA << std::endl;
+                // std::cout << "Delta x: " << deltaX << "\n"
+                //           << "Delta y: " << deltaY << "\n"
+                //           << "Delta a: " << deltaA << std::endl;
+                double final_x = final_x + std::abs(deltaX);
+                double final_y = final_y + std::abs(deltaY);
+                double final_a = final_a + std::abs(deltaA);
+                std::cout << "final_x: " << final_x<< "\n"
+                << "final_y: " << final_y << "\n"
+                << "final_a: " << final_a << std::endl;
             }
-            
             // Store the current odometry as the previous odometry for the next loop
             prevOdom = odom;
             isFirstLoop = false;

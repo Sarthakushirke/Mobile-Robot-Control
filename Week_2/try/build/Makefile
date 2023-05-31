@@ -123,32 +123,32 @@ hello/fast:
 	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/build
 .PHONY : hello/fast
 
-src/assig2.o: src/assig2.cpp.o
+src/try1.o: src/try1.cpp.o
 
-.PHONY : src/assig2.o
+.PHONY : src/try1.o
 
 # target to build an object file
-src/assig2.cpp.o:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/assig2.cpp.o
-.PHONY : src/assig2.cpp.o
+src/try1.cpp.o:
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/try1.cpp.o
+.PHONY : src/try1.cpp.o
 
-src/assig2.i: src/assig2.cpp.i
+src/try1.i: src/try1.cpp.i
 
-.PHONY : src/assig2.i
+.PHONY : src/try1.i
 
 # target to preprocess a source file
-src/assig2.cpp.i:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/assig2.cpp.i
-.PHONY : src/assig2.cpp.i
+src/try1.cpp.i:
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/try1.cpp.i
+.PHONY : src/try1.cpp.i
 
-src/assig2.s: src/assig2.cpp.s
+src/try1.s: src/try1.cpp.s
 
-.PHONY : src/assig2.s
+.PHONY : src/try1.s
 
 # target to generate assembly for a file
-src/assig2.cpp.s:
-	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/assig2.cpp.s
-.PHONY : src/assig2.cpp.s
+src/try1.cpp.s:
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/try1.cpp.s
+.PHONY : src/try1.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... hello"
-	@echo "... src/assig2.o"
-	@echo "... src/assig2.i"
-	@echo "... src/assig2.s"
+	@echo "... src/try1.o"
+	@echo "... src/try1.i"
+	@echo "... src/try1.s"
 .PHONY : help
 
 
