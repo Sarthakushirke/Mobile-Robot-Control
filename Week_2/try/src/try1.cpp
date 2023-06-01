@@ -84,16 +84,14 @@ int main()
     const double rotationSpeed = 0.2;  // Adjust the rotation speed as needed
 
     int id_reached = 0;
-    const float minimum_threshold = 0.5;   // Minimum threshold for obstacle detection
+    const float minimum_threshold = 0.7;   // Minimum threshold for obstacle detection
     
 
     std::vector<std::pair<float, std::pair<int, int>>> areas_with_indices;  // Container to store the pairs of first_i, last_i values and open_area
     emc::OdometryData startOdom;
     // Loop while we are properly connected
     while (io.ok())
-    {
-        
-        
+    { 
         // Create objects to hold the laser and odometry data
         emc::LaserData scan;  
         emc::OdometryData odom;   
@@ -102,7 +100,7 @@ int main()
         {
             openArea = 0.0;
             maxOpenArea = 0.0;
-            const double forward_angle = M_PI_4;		   // 45 degrees
+            const double forward_angle = (3 * M_PI)/18;		   // 45 degrees
 			const double angle_increment = scan.angle_increment;
 
 			// Calculate the range of indices to search for obstacles
@@ -208,39 +206,59 @@ int main()
                 emc::OdometryData prevOdom;
 
                 double currentodomangle = prevOdom.a;
+
             
                 if (std::abs(error) > tolerance)
                 {
                     //I entered the rotataion part 
                     if (io.readOdometryData(odom))
                     {
-                        //std::cout << "error: " << std::abs(error) << std::endl;
-                        // Rotate the robot based on the error (proportional control)
-                        float rotation = rotationSpeed * std::abs(error); //error;
-                        //std::cout << "rotation: " << rotation << std::endl;
+                        double nowodom = odom.a;
+                        if(odom.a >= M_PI_2)
+                        { 
+                            while(std::abs(nowodom - startOdom.a) > 0.01)
+                            {
+                                if (io.readOdometryData(odom))
+                                {
+                                    std::cout << "nowodom" << nowodom << std::endl;   
+                                    std::cout << "startdom" << startOdom.a << std::endl;   
+                                    io.sendBaseReference(0,0,-0.1);
+                                    nowodom = odom.a;
+                                }
+                            }   
+                            // Sleep for the remaining time
+                            r.sleep();
 
-                        // Send the rotation command to the robot (e.g., using io.sendBaseReference())
-                        if(error < 0.0)
-                        {
-                            //std::cout << "Robot rotated clockwise" << std::endl;
-                            io.sendBaseReference(0,0,-rotation);
-                            double rotatedodomangle = odom.a;
-                            //std::cout << "rotatedodomangle" << rotatedodomangle << std::endl;
-                            double actual_angle = std::abs(currentodomangle - rotatedodomangle);
-                            //std::cout << "actual_angle" << actual_angle << std::endl;
-                            error = error + actual_angle;
-                            currentodomangle = rotatedodomangle;
                         }
                         else
                         {
-                            //std::cout << "Robot rotated anti-clockwise" << std::endl;
-                            io.sendBaseReference(0,0,rotation);
-                            double rotatedodomangle = odom.a;
-                            double actual_angle = std::abs(currentodomangle - rotatedodomangle);
-                            error = error - actual_angle;
-                            currentodomangle = rotatedodomangle;
+                            //std::cout << "error: " << std::abs(error) << std::endl;
+                            // Rotate the robot based on the error (proportional control)
+                            float rotation = rotationSpeed * std::abs(error); //error;
+                            //std::cout << "rotation: " << rotation << std::endl;
+                            // Send the rotsation command to the robot (e.g., using io.sendBaseReference())
+                            if(error < 0.0)
+                            {
+                                //std::cout << "Robot rotated clockwise" << std::endl;
+                                io.sendBaseReference(0,0,-rotation);
+                                double rotatedodomangle = odom.a;
+                                //std::cout << "rotatedodomangle" << rotatedodomangle << std::endl;
+                                double actual_angle = std::abs(currentodomangle - rotatedodomangle);
+                                //std::cout << "actual_angle" << actual_angle << std::endl;
+                                error = error + actual_angle;
+                                //currentodomangle = rotatedodomangle;
+                            }
+                            else
+                            {
+                                //std::cout << "Robot rotated anti-clockwise" << std::endl;
+                                io.sendBaseReference(0,0,rotation);
+                                double rotatedodomangle = odom.a;
+                                double actual_angle = std::abs(currentodomangle - rotatedodomangle);
+                                error = error - actual_angle;
+                                //currentodomangle = rotatedodomangle;
+                            }
                         }
-                        
+    
                     }  
                     
                 } else { // move forward
