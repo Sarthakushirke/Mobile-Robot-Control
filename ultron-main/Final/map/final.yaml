@@ -1,0 +1,6 @@
+image: final.png #include the (relative) path to where you put the PNG-file 
+resolution: 0.0125
+origin: [0.0, 0.0, 0.0]
+occupied_thresh: 0.9
+free_thresh: 0.1
+negate: 0
