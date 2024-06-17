@@ -1,0 +1,6 @@
+{
+  "initial_pose": [1.3, 0.7, -0.785],
+  "uncertain_odom":true,
+  "provide_internal_pose":false
+}
+

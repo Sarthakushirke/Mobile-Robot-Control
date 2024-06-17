@@ -1,0 +1,16 @@
+{
+  "initial_pose": [6.5, 3.0, -1.0],
+  "uncertain_odom":true,
+  "provide_internal_pose":false,
+  "objects":[
+    {
+      "length": 0.25,
+      "width": 0.25,
+      "trigger_radius": 1.0,
+      "repeat": true,
+      "velocity": 0.25,
+      "init_pose": [2.75, 2.5, 0.0],
+      "final_pose": [5.52, 2.5, 0.0]
+    }
+  ]
+}

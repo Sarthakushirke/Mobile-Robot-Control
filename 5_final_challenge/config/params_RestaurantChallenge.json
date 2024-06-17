@@ -1,0 +1,6 @@
+{
+  "filename": "../maps/RestaurantChallengeMap.png",
+  "resolution": 0.0125000,
+  "start": [6.0, 3.5],
+  "goal": [2.0, 2.0]
+}

@@ -1,0 +1,6 @@
+image: RestaurantChallengeMap2024.png
+resolution: 0.025000
+origin: [0.0, 0.0, 0.0]
+occupied_thresh: 0.900000
+free_thresh: 0.100000
+negate: 0
